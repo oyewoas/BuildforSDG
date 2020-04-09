@@ -15,9 +15,9 @@ const covid19ImpactEstimator = (data) => {
   if (data.periodType === 'days') {
     impact.infectionsByRequestedTime = infectionsByRequestedTime(impact.currentlyInfected, Math.pow(2, Math.trunc(data.timeToElapse / 3)));
   } else if (data.periodType === 'weeks') {
-    impact.infectionsByRequestedTime = infectionsByRequestedTime(impact.currentlyInfected, Math.pow(2, Math.trunc(data.timeToElapse * 7 / 3)));
+    impact.infectionsByRequestedTime = infectionsByRequestedTime(impact.currentlyInfected, Math.pow(2, Math.trunc((data.timeToElapse * 7) / 3)));
   } else {
-    impact.infectionsByRequestedTime = infectionsByRequestedTime(impact.currentlyInfected, Math.pow(2, Math.trunc(data.timeToElapse * 30 / 3)));
+    impact.infectionsByRequestedTime = infectionsByRequestedTime(impact.currentlyInfected, Math.pow(2, Math.trunc((data.timeToElapse * 30) / 3)));
   }
   impact.severeCasesByRequestedTime = severeCasesByRequestedTime(impact.infectionsByRequestedTime);
   impact.hospitalBedsByRequestedTime = hospitalBedsByRequestedTime(data.totalHospitalBeds, impact.severeCasesByRequestedTime);
@@ -31,9 +31,9 @@ const covid19ImpactEstimator = (data) => {
   if (data.periodType === 'days') {
     severeImpact.infectionsByRequestedTime = infectionsByRequestedTime(severeImpact.currentlyInfected, Math.pow(2, Math.trunc(data.timeToElapse / 3)));
   } else if (data.periodType === 'weeks') {
-    severeImpact.infectionsByRequestedTime = infectionsByRequestedTime(severeImpact.currentlyInfected, Math.pow(2, Math.trunc(data.timeToElapse * 7 / 3)));
+    severeImpact.infectionsByRequestedTime = infectionsByRequestedTime(severeImpact.currentlyInfected, Math.pow(2, Math.trunc((data.timeToElapse * 7) / 3)));
   } else {
-    severeImpact.infectionsByRequestedTime = infectionsByRequestedTime(severeImpact.currentlyInfected, Math.pow(2, Math.trunc(data.timeToElapse * 30 / 3)));
+    severeImpact.infectionsByRequestedTime = infectionsByRequestedTime(severeImpact.currentlyInfected, Math.pow(2, Math.trunc((data.timeToElapse * 30) / 3)));
   }
   severeImpact.severeCasesByRequestedTime = severeCasesByRequestedTime(severeImpact.infectionsByRequestedTime);
   severeImpact.casesForICUByRequestedTime = casesForICUByRequestedTime(severeImpact.infectionsByRequestedTime);
