@@ -23,8 +23,13 @@ const covid19ImpactEstimator = (data) => {
   impact.hospitalBedsByRequestedTime = hospitalBedsByRequestedTime(data.totalHospitalBeds, impact.severeCasesByRequestedTime);
   impact.casesForICUByRequestedTime = casesForICUByRequestedTime(impact.infectionsByRequestedTime);
   impact.casesForVentilatorsByRequestedTime = casesForVentilatorsByRequestedTime(impact.infectionsByRequestedTime);
-  impact.dollarsInFlight = dollarsInFlight(impact.infectionsByRequestedTime, data.region.avgDailyIncomeInUSD, data.region.avgDailyIncomePopulation, data.timeToElapse);
-
+  if (data.periodType === 'days') {
+    impact.dollarsInFlight = dollarsInFlight(impact.infectionsByRequestedTime, data.region.avgDailyIncomeInUSD, data.region.avgDailyIncomePopulation, data.timeToElapse);
+  } else if (data.periodType === 'weeks') {
+    impact.dollarsInFlight = dollarsInFlight(impact.infectionsByRequestedTime, data.region.avgDailyIncomeInUSD, data.region.avgDailyIncomePopulation, (data.timeToElapse * 7));
+  } else {
+    impact.dollarsInFlight = dollarsInFlight(impact.infectionsByRequestedTime, data.region.avgDailyIncomeInUSD, data.region.avgDailyIncomePopulation, (data.timeToElapse * 30));
+  }
 
   // Severe case estimation
   severeImpact.currentlyInfected = currentlyInfected(data.reportedCases, 50);
@@ -39,8 +44,13 @@ const covid19ImpactEstimator = (data) => {
   severeImpact.hospitalBedsByRequestedTime = hospitalBedsByRequestedTime(data.totalHospitalBeds, severeImpact.severeCasesByRequestedTime);
   severeImpact.casesForICUByRequestedTime = casesForICUByRequestedTime(severeImpact.infectionsByRequestedTime);
   severeImpact.casesForVentilatorsByRequestedTime = casesForVentilatorsByRequestedTime(severeImpact.infectionsByRequestedTime);
-  severeImpact.dollarsInFlight = dollarsInFlight(severeImpact.infectionsByRequestedTime, data.region.avgDailyIncomeInUSD, data.region.avgDailyIncomePopulation, data.timeToElapse);
-
+  if (data.periodType === 'days') {
+    severeImpact.dollarsInFlight = dollarsInFlight(severeImpact.infectionsByRequestedTime, data.region.avgDailyIncomeInUSD, data.region.avgDailyIncomePopulation, data.timeToElapse);
+  } else if (data.periodType === 'weeks') {
+    severeImpact.dollarsInFlight = dollarsInFlight(severeImpact.infectionsByRequestedTime, data.region.avgDailyIncomeInUSD, data.region.avgDailyIncomePopulation, (data.timeToElapse * 7));
+  } else {
+    severeImpact.dollarsInFlight = dollarsInFlight(severeImpact.infectionsByRequestedTime, data.region.avgDailyIncomeInUSD, data.region.avgDailyIncomePopulation, (data.timeToElapse * 30));
+  }
   return outputData(data, impact, severeImpact);
 };
 
