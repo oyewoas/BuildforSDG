@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 const currentlyInfected = (cases, multiples) => cases * multiples;
 
 const infectionsByRequestedTime = (infected, duration) => infected * duration;
@@ -10,7 +11,6 @@ const casesForICUByRequestedTime = (infectionsByTime) => infectionsByTime * 0.05
 
 const casesForVentilatorsByRequestedTime = (infectionsByTime) => infectionsByTime * 0.02;
 
-// eslint-disable-next-line max-len
 const dollarsInFlight = (infectionsByTime, income, population, duration) => infectionsByTime * income * population * duration;
 
 export {
