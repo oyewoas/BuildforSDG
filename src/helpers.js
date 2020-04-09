@@ -4,7 +4,7 @@ const infectionsByRequestedTime = (infected, duration) => infected * duration;
 
 const severeCasesByRequestedTime = (infectionsByTime) => infectionsByTime * 0.15;
 
-const hospitalBedsByRequestedTime = (totalBeds, severeCases) => severeCases - (totalBeds * 0.35);
+const hospitalBedsByRequestedTime = (totalBeds, severeCases) => (totalBeds * 0.35) - severeCases;
 
 const casesForICUByRequestedTime = (infectionsByTime) => infectionsByTime * 0.05;
 
