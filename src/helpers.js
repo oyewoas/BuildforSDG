@@ -11,7 +11,7 @@ const casesForICUByRequestedTime = (infectionsByTime) => Math.trunc(infectionsBy
 
 const casesForVentilatorsByRequestedTime = (infectionsByTime) => Math.trunc(infectionsByTime * 0.02);
 
-const dollarsInFlight = (infectionsByTime, income, population, duration) => Math.trunc(infectionsByTime * income * population * duration).toFixed(1);
+const dollarsInFlight = (infectionsByTime, income, population, duration) => infectionsByTime * income * population * duration;
 
 export {
   currentlyInfected,
